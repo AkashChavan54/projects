@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hangman Game</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="box">
+    <div class="header">
+      <div class="row">
+        <div class="head col-lg-6">
+          <h1 class="box-title">Welcome to Hangman Game</h1>
+        </div>
+        <div class="head col-lg-6">
+          <img class="header-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjkwLjUyMXB4IiBoZWlnaHQ9IjkwLjUyMXB4IiB2aWV3Qm94PSIwIDAgOTAuNTIxIDkwLjUyMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgOTAuNTIxIDkwLjUyMTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTg0LjE0NSw4Ni4xOTVMNzMuMjAzLDYzLjk2di0yLjk2NVYwSDEyLjg3Yy0xLjY1NywwLTMsMS4zNDMtMywzYzAsMS42NTcsMS4zNDMsMywzLDNoNS44MzR2MjEuMzU1DQoJCWMtMS4yNTItMS41NjItMy4xNzMtMi41NjYtNS4zMzEtMi41NjZjLTMuNzcyLDAtNi44MzEsMy4wNTgtNi44MzEsNi44MzFjMCwzLjUwNCwyLjY0LDYuMzg4LDYuMDM4LDYuNzgxDQoJCUM4LjQ3NSw0NC41NSw1LjM2Nyw1MS40NDUsNi4yMDQsNTkuMDJjMC40MiwzLjgwMSw2LjQyNSwzLjg0Miw2LDBjLTAuNDk2LTQuNDk0LDAuNjE4LTguNTksMi41LTEyLjQxNFY1OS4wMg0KCQljMCwwLjM0NCwwLjAzNiwwLjY3OSwwLjA5NiwxLjAwNmMwLjI2NCw2Ljg5NC0xLjU5OCwxMy42MTUtMS43NTIsMjAuNDk0Yy0wLjA4NywzLjg3MSw1LjkxMywzLjg2Miw2LDANCgkJYzAuMDYyLTIuNzYzLDAuNDAxLTUuNDk4LDAuNzY3LTguMjI5YzAuMjM2LDIuOTkxLDAuNTAyLDUuOTgsMC42NCw4Ljk3OWMwLjE3NywzLjg1NCw2LjE3NywzLjg2OSw2LDANCgkJYy0wLjMxMy02Ljg0Ni0xLjI5Ny0xMy42NjItMS4wMzItMjAuNTIxYzAuMTgtMC41NDUsMC4yODItMS4xMjUsMC4yODItMS43MjlWNDQuNjI1YzEuODU1LDQuMDQ3LDIuMTM3LDguNjY3LDIuNSwxMy41NjENCgkJYzAuMjg1LDMuODM0LDYuMjg3LDMuODYyLDYsMGMtMC42NzMtOS4wNDktMS40MS0xNy42My04Ljg3OS0yMy43ODhjLTAuNTUxLTAuNDU1LTEuMTQ4LTAuNjc3LTEuNzM0LTAuNzI0DQoJCWMtMC42NTUtMC41MTQtMS40MjctMC44ODUtMi4yNzItMS4wNTljMC4yMzctMC4yNjUsMC4zODUtMC42MTEsMC4zODUtMC45OTVWNmgxNS4yODRjMC4xLDAuMTQxLDAuMjA1LDAuMjc5LDAuMzMxLDAuNDA1DQoJCWwyOC44MjIsMjguODIxYzAuMzEyLDAuMzExLDAuNjc2LDAuNTM0LDEuMDYyLDAuNjh2MjUuMDl2My4wMjFsLTkuOTg2LDIyLjI3NGMtMC42NzksMS41MTMtMC4wMDIsMy4yODcsMS41MSwzLjk2NQ0KCQljMC4zOTcsMC4xNzksMC44MTQsMC4yNjUsMS4yMjYsMC4yNjVjMS4xNDYsMCwyLjI0LTAuNjYsMi43MzktMS43NzNsNC41MTItMTAuMDY2djguODM4YzAsMS42NTYsMS4zNDMsMywzLDNzMy0xLjM0NCwzLTN2LTkuOTczDQoJCWw1LjU2LDExLjI5N2MwLjUyMSwxLjA2MSwxLjU4NiwxLjY3NiwyLjY5MiwxLjY3NmMwLjQ0NSwwLDAuODk2LTAuMSwxLjMyMi0wLjMxQzg0LjI2Niw4OS40NzksODQuODc2LDg3LjY4Miw4NC4xNDUsODYuMTk1eg0KCQkgTTQ1LjM5OSw2aDIxLjgwNHYyMS44MDNMNDUuMzk5LDZ6Ii8+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==" />
+        </div>
+      </div>
+    </div>
+
+    <div class="text-box">
+      <a class="dash">Guess the word!</a>
+      <div class="input-primary">
+        <button type="button" class="btnstart">Let's start!</button>
+        <input type="text" id="input-text" placeholder="Give a letter">
+
+        <button type="button" class="btn-primary">Check!</button>
+      </div>
+      <div class="inp">
+        <a class="checking"> Lets Go! </a> <br> <br> <br>
+        <a class="chances">You've got 10 chances!</a>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

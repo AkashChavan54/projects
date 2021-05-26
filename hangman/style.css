@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  color: black;
+}
+
+html {
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  border: none;
+}
+
+
+.box{
+    background: #f6f5f5;
+  text-align: center;
+
+}
+
+.header{
+padding: 100px 150px 150px 150px;
+margin:0;
+width: 100%;
+background-color:#276678;
+
+text-align: center;
+margin-bottom:80px;
+}
+
+.head{
+padding-top: 50px;
+}
+.header-img{
+width: 50%;
+}
+.box-title{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size:5rem;
+  color: white;
+}
+
+
+.text-box{
+padding: 75px;
+}
+.dash{
+  background-color:#aad8d3;
+  position: relative;
+  border-radius: 20px;;
+  font-size:50px;
+  margin-bottom:80px;
+  padding: 40px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: black
+}
+
+.input-primary{
+    text-align: center;
+  margin-top:100px;
+  padding:10px;
+
+}
+
+#input-text{
+  font-size: 20px;
+  border-radius: 10px;
+  padding:15px 25px 15px 25px;
+  font-family: 'Montserrat', sans-serif;
+
+
+}
+.btnstart{
+    color:#276678;
+  font-size:20px;
+  border-radius: 10px;
+  background-color:#aaaaaa;
+  padding:15px 25px 15px 25px;
+  margin: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+.btnstart:hover{
+  background-color:#1687a7;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-primary{
+  font-size:20px;
+  border-radius: 10px;
+  background-color:#276678;
+  padding:15px 25px 15px 25px;
+  margin: 15px;
+  color: white;
+
+}
+
+.btn-primary:hover {
+      background-color: black;
+      color: white;
+    }
+.inp{
+      text-align: center;
+      padding : 15px;
+
+      }
+
+.checking{
+  font-size:4rem;
+  /margin-left: 730px;/
+  color:#276678;
+  font-weight: 500;
+
+}
+.chances{
+  color:black;
+  font-size:25px;
+  margin-top:15px
+
+}
