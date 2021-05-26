@@ -1,3 +1,6 @@
+#this code gets you the hash code and other details from a git repo
+
+
 '''import subprocess
 process = subprocess.Popen(['git', 'rev-parse', 'HEAD'], shell=False, stdout=subprocess.PIPE)
 git_head_hash = process.communicate()[0].strip()
