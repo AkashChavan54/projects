@@ -1,55 +1,46 @@
-'''import subprocess
+import subprocess
+import re
+import git
 process = subprocess.Popen(['git', 'rev-parse', 'HEAD'], shell=False, stdout=subprocess.PIPE)
 git_head_hash = process.communicate()[0].strip()
 print(git_head_hash)
+
+'''repo = git.Repo('C:/Users/akash/git_repo')
+tags = sorted(repo.tags, key=lambda t: t.tag.tagged_date)
+latest_tag = tags
+print(latest_tag)'''
 '''
+def get_git_tag():
+    try:
+        git_tag = str(
+            subprocess.check_output(
+                ['git', 'describe', '--exact-match', '--abbrev=0'], stderr=subprocess.STDOUT
+            )
+        ).strip('\'b\\n')
+    except subprocess.CalledProcessError as exc_info:
+        match = re.search(
+            'fatal: no tag exactly matches \'(?P<commit>[a-z0-9]+)\'', str(exc_info.output)
+        )
+        if match:
+            raise Exception(
+                'Bailing: there is no git tag for the current commit, {commit}'.format(
+                    commit=match.group('commit')
+                )
+            )
+        raise Exception(str(exc_info.output))
 
-import subprocess
-import re
+    return git_tag 
+get_git_tag()'''
 
-leading_4_spaces = re.compile('^    ')
+'''def get_git_tag(self):
+        try:
+            self.tag = subprocess.check_output(['/usr/bin/git', '-C', self.GIT_REPO_LOCAL_DIR, 'describe', '--tags']).strip()
+        except:
+            pass 
+get_git_tag("git") '''
 
-
-def get_commits():
-    lines = subprocess.check_output(['git', 'log'], stderr=subprocess.STDOUT).decode("utf-8").split("\n")    
-    commits = []
-    current_commit = {}
-
-    def save_current_commit():
-        title = current_commit['message'][0]
-        message = current_commit['message'][1:]
-        if message and message[0] == '':
-            del message[0]
-        current_commit['title'] = title
-        current_commit['message'] = '\n'.join(message)
-        commits.append(current_commit)
-
-    for line in lines:
-        if not line.startswith(' '):
-            if line.startswith('commit '):
-                if current_commit:
-                    save_current_commit()
-                    current_commit = {}
-                current_commit['hash'] = line.split('commit ')[1]
-            else:
-                try:
-                    key, value = line.split(':', 1)
-                    current_commit[key.lower()] = value.strip()
-                except ValueError:
-                    pass
-        else:
-            current_commit.setdefault(
-                'message', []
-            ).append(leading_4_spaces.sub('', line))
-    if current_commit:
-        save_current_commit()
-    return commits
-
-commits = get_commits()
-commits.sort(key = lambda c: len(c['message']), reverse=True)
-for commit in commits[:1]:
-    print (commit['title'])
-    print (commit['author'])
-    print (commit['hash'])
-    print ('https://github.com/chavan/new_repo_name/commit/' + commit['hash'])
-    print ()
+import git
+repo = git.Repo('C:/Users/akash/git_repo')
+tags = sorted(repo.tags, key=lambda t: t.tag.tagged_date)
+latest_tag = tags
+print(latest_tag)
