@@ -1,0 +1,1 @@
+just give the required inputs and the pdf will be in your CWD.
